@@ -1,10 +1,16 @@
 import './App.css';
 import { useState } from 'react';
 import initStateNotes from './initStateNotes.json';
+import SingleNote from './singleNote/SingleNote';
 
 export default function App() {
   const [notes, setNotes] = useState(initStateNotes);
   const [form, setForm] = useState('');
+
+  type Note = {
+    date: string;
+    note: string;
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -17,13 +23,13 @@ export default function App() {
     const trimmed: string = form.trim();
     if (trimmed !== '') {
       const date: string = new Date().toLocaleString();
-      const newNote = {
+      const newNote: Note = {
         date: date,
         note: trimmed,
       };
       setNotes([newNote, ...notes]);
+      setForm('');
     }
-    setForm('');
   };
 
   return (
@@ -34,15 +40,9 @@ export default function App() {
       </form>
 
       <ul>
-        {notes.map((note, index) => {
-          return (
-            <li key={index}>
-              <p>
-                {note.note} ~ {note.date}
-              </p>
-            </li>
-          );
-        })}
+        {notes.map((oneNote: Note) => (
+          <SingleNote oneNote={oneNote} />
+        ))}
       </ul>
     </div>
   );

@@ -1,0 +1,22 @@
+.box {
+  margin-top: 1rem;
+  width: 20rem;
+  border: 1px solid grey;
+  border-radius: 0 0 5px 5px;
+}
+
+.top {
+  border-bottom: 1px dashed grey;
+  font-size: small;
+  background-color: aliceblue;
+}
+
+.body {
+  padding: 0.25rem;
+  font-size: large;
+  overflow-wrap: break-word;
+}
+
+.box:hover {
+  border: 1px dashed;
+}
