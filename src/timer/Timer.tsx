@@ -1,3 +1,4 @@
+import css from './Timer.module.css';
 import { useEffect, useState } from 'react';
 
 const initCounter = [999, 99, 99, 99];
@@ -27,10 +28,10 @@ export default function Timer() {
   }, [counter]);
 
   return (
-    <div>
-      <div>Time left until NEW YEAR:</div>
-      <div>days: {counter[0]}</div>
-      <div>
+    <div className={css.box}>
+      <div className={css.header}>Time left until NEW YEAR:</div>
+      {counter[0] > 0 && <div>days: {counter[0]}</div>}
+      <div className={css.time}>
         {counter[1] < 10 ? `0${counter[1]}` : counter[1]}:
         {counter[2] < 10 ? `0${counter[2]}` : counter[2]}:
         {counter[3] < 10 ? `0${counter[3]}` : counter[3]}

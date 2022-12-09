@@ -1,0 +1,15 @@
+.box {
+  padding: 1rem 0 1rem 0;
+}
+
+.header {
+  padding: 1rem 0 1rem 0;
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.time {
+  padding: 1rem 0 1rem 0;
+  font-size: xx-large;
+  font-weight: 900;
+}
