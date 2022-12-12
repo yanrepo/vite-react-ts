@@ -1,3 +1,4 @@
+import css from './FormNote.module.css';
 import { useState } from 'react';
 
 type Note = {
@@ -17,7 +18,7 @@ export default function FormNote({
   const [form, setForm] = useState('');
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLTextAreaElement>
   ): void => {
     setForm(e.currentTarget.value);
   };
@@ -37,12 +38,14 @@ export default function FormNote({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Note:{' '}
-        <input type="text" value={form} onChange={handleChange} />{' '}
-      </label>
-      <input type="submit" value="Save" />
+    <form className={css.box} onSubmit={handleSubmit}>
+      <textarea
+        className={css.input}
+        value={form}
+        autoFocus={true}
+        onChange={handleChange}
+      />
+      <input className={css.button} type="submit" value="Save" />
     </form>
   );
 }

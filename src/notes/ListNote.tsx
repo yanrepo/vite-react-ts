@@ -21,14 +21,14 @@ export default function ListNote({
   let itemDrop: React.MutableRefObject<number> = useRef(0);
 
   const dragStart = (
-    e: React.DragEvent<HTMLLIElement>,
+    _e: React.DragEvent<HTMLDivElement>,
     index: number
   ): void => {
     itemStart.current = index;
   };
 
   const dragOver = (
-    e: React.DragEvent<HTMLLIElement>,
+    e: React.DragEvent<HTMLDivElement>,
     index: number
   ): void => {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function ListNote({
   };
 
   const dragDrop = (
-    e: React.DragEvent<HTMLLIElement>,
+    _e: React.DragEvent<HTMLDivElement>,
     setNotes: React.Dispatch<React.SetStateAction<Note[]>>
   ): void => {
     const newNotes: Note[] = notes;
@@ -49,21 +49,40 @@ export default function ListNote({
     setRender(render + 1);
   };
 
+  const removeNote = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ): void => {
+    let id = e.currentTarget.id;
+    setNotes(
+      notes.filter((_oneNote, index) => index !== parseInt(id, 10))
+    );
+  };
+
   return (
-    <ul>
+    <div className={css.ulnote}>
       {notes.map((note: Note, index: number) => (
-        <li
-          className={css.box}
+        <div
+          className={css.linote}
           key={index + note.date + note.note}
           draggable
           onDragStart={(e) => dragStart(e, index)}
           onDragOver={(e) => dragOver(e, index)}
           onDrop={(e) => dragDrop(e, setNotes)}
         >
-          <div className={css.top}>{note.date}</div>
+          <div className={css.top}>
+            <button
+              id={index.toString()}
+              className={css.remove}
+              title="Remove note"
+              onClick={(e) => removeNote(e)}
+            >
+              X
+            </button>
+            <div className={css.header}>{note.date}</div>
+          </div>
           <div className={css.body}>{note.note}</div>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
