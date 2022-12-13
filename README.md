@@ -1,3 +1,1 @@
-# vite-react-ts
-
-notes
+# I don't think I like typescript
