@@ -1,0 +1,44 @@
+.box {
+  margin-top: 1rem;
+  width: 18rem;
+  border: 1px solid grey;
+  border-radius: 0 0 5px 5px;
+}
+.box:hover {
+  border: 1px dashed;
+}
+
+.top {
+  border-bottom: 1px dashed grey;
+  font-size: small;
+  background-color: aliceblue;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.title {
+  flex-grow: 1;
+}
+.remove {
+  margin: 3px;
+  width: 1rem;
+  height: auto;
+  z-index: 1;
+  place-self: center start;
+  position: relative;
+  text-align: center;
+  font-size: smaller;
+  font-weight: 800;
+  color: black;
+  border: 0;
+  background: 0;
+}
+.remove:hover {
+  color: rgb(255, 0, 0);
+}
+
+.body {
+  padding: 0.25rem;
+  font-size: large;
+  overflow-wrap: break-word;
+}

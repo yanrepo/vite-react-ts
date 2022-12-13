@@ -1,10 +1,7 @@
 import css from './ListNote.module.css';
+import { Note } from './types';
 import { useState, useRef } from 'react';
-
-type Note = {
-  date: string;
-  note: string;
-};
+import SingleNote from './SingleNote';
 
 interface INotes {
   notes: Note[];
@@ -35,10 +32,7 @@ export default function ListNote({
     itemDrop.current = index;
   };
 
-  const dragDrop = (
-    _e: React.DragEvent<HTMLDivElement>,
-    setNotes: React.Dispatch<React.SetStateAction<Note[]>>
-  ): void => {
+  const dragDrop = (_e: React.DragEvent<HTMLDivElement>): void => {
     const newNotes: Note[] = notes;
     const dragNote: Note = newNotes[itemStart.current];
     newNotes.splice(itemStart.current, 1);
@@ -59,29 +53,17 @@ export default function ListNote({
   };
 
   return (
-    <div className={css.ulnote}>
+    <div className={css.box}>
       {notes.map((note: Note, index: number) => (
-        <div
-          className={css.linote}
+        <SingleNote
           key={index + note.date + note.note}
-          draggable
-          onDragStart={(e) => dragStart(e, index)}
-          onDragOver={(e) => dragOver(e, index)}
-          onDrop={(e) => dragDrop(e, setNotes)}
-        >
-          <div className={css.top}>
-            <button
-              id={index.toString()}
-              className={css.remove}
-              title="Remove note"
-              onClick={(e) => removeNote(e)}
-            >
-              X
-            </button>
-            <div className={css.header}>{note.date}</div>
-          </div>
-          <div className={css.body}>{note.note}</div>
-        </div>
+          note={note}
+          index={index}
+          dragStart={dragStart}
+          dragOver={dragOver}
+          dragDrop={dragDrop}
+          removeNote={removeNote}
+        />
       ))}
     </div>
   );

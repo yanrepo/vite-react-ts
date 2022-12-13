@@ -1,10 +1,6 @@
 import css from './FormNote.module.css';
 import { useState } from 'react';
-
-type Note = {
-  date: string;
-  note: string;
-};
+import { Note } from './types';
 
 interface INotes {
   notes: Note[];
