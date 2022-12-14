@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Note } from './types';
 import FormNote from './FormNote';
 import ListNote from './ListNote';
 
@@ -9,12 +10,7 @@ const initNotes = [
   },
 ];
 
-type Note = {
-  date: string;
-  note: string;
-};
-
-export default function Notes() {
+export default function Notes(): JSX.Element {
   const [notes, setNotes] = useState<Note[]>(initNotes);
 
   return (
