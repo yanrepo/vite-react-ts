@@ -1,4 +1,3 @@
-import './App.css';
 import Timer from './timer/Timer';
 import Notes from './notes/Notes';
 
